@@ -1,3 +1,9 @@
+import 'dart:convert';
+
+import 'package:flutter_test_image_picker/api/webService.dart';
+import 'package:flutter_test_image_picker/util/const.dart';
+
+
 class DataResponse {
   String description;
   String alt_description;
@@ -6,18 +12,27 @@ class DataResponse {
 
   DataResponse({this.description, this.alt_description, this.urls, this.user});
 
-  factory DataResponse.fromJson(Map<String, dynamic> parsedJson){
+  factory DataResponse.fromJson(Map<String, dynamic> parsedJson) {
     return DataResponse(
         description: parsedJson['description'],
         alt_description: parsedJson['alt_description'],
-        urls : Urls.fromJson(parsedJson['urls']),
-        user : User.fromJson(parsedJson['user'])
+        urls: Urls.fromJson(parsedJson['urls']),
+        user: User.fromJson(parsedJson['user']));
+  }
+
+  static Resource<List<DataResponse>> get all {
+    return Resource(
+        url: Constants.UNSPLASH_URL,
+        parse: (response) {
+          final result = json.decode(response.body);
+          Iterable list = result;
+          return list.map((parsedJson) => DataResponse.fromJson(parsedJson)).toList();
+        }
 
     );
   }
-
-
 }
+
 class Urls {
   String raw;
   String full;
@@ -36,6 +51,7 @@ class Urls {
         thumb: parsedJson['thumb']);
   }
 }
+
 class User {
   String name;
 
