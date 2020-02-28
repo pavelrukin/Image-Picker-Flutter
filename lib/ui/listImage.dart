@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_image_picker/api/webService.dart';
+import 'package:flutter_test_image_picker/ui/imageScreen.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -39,13 +41,36 @@ class ListImagesState extends State<ListImages> {
       // body:
     );
   }
-
-  ListTile _buildItemsForListView(BuildContext context, int index) {
+  Widget _buildItemsForListView(BuildContext context, int index){
     return ListTile(
-      subtitle: Text(
-        _dataResponse[index].user.name,
-        style: TextStyle(fontSize: 18),
-      ),
+      title: Text(_dataResponse[index].description == null? "Empty description" : _dataResponse[index].description,maxLines: 2, ),
+      subtitle: Text("Author : "+ _dataResponse[index].user.name),
+      leading: Material(
+        child: InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ImageScreen(
+              imgUrl: _dataResponse[index].urls.thumb,
+            author: _dataResponse[index].user.name,)));
+          } ,
+          child: CircleAvatar(
+            radius: 30.0,
+            backgroundImage: NetworkImage(_dataResponse[index].urls.thumb),
+            backgroundColor: Colors.transparent,
+          ),
+        ),
+      ) ,
     );
+
   }
 }
+/*   Workig TileWidg
+Widget _buildItemsForListView(BuildContext context, int index) {
+  return ListTile(
+
+    dense: true,
+
+    subtitle: Text(
+      _dataResponse[index].user.name,
+      style: TextStyle(fontSize: 18),
+    ),
+  );*/
