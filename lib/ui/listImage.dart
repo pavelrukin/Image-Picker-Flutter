@@ -1,10 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test_image_picker/api/webService.dart';
 import 'package:flutter_test_image_picker/ui/imageScreen.dart';
-
-import 'package:http/http.dart' as http;
-
 import 'package:flutter_test_image_picker/model/dataResponse.dart';
 
 class ListImages extends StatefulWidget {
@@ -14,7 +11,7 @@ class ListImages extends StatefulWidget {
 }
 
 class ListImagesState extends State<ListImages> {
-  List<DataResponse> _dataResponse;
+  List<DataResponse> listDataResponse;
 
   @override
   void initState() {
@@ -23,8 +20,8 @@ class ListImagesState extends State<ListImages> {
   }
 
   void _populateDataResponse() {
-    WebService().load(DataResponse.all).then((dataRespnse) => {
-          setState(() => {_dataResponse = dataRespnse})
+    WebService().load(DataResponse.all).then((dataResponse) => {
+          setState(() => {listDataResponse = dataResponse})
         });
   }
 
@@ -35,26 +32,33 @@ class ListImagesState extends State<ListImages> {
         title: Text("Image Picker"),
       ),
       body: ListView.builder(
-        itemCount: _dataResponse.length,
+        itemCount: listDataResponse.length,
         itemBuilder: _buildItemsForListView,
       ),
       // body:
     );
   }
   Widget _buildItemsForListView(BuildContext context, int index){
+var allData = listDataResponse[index];
+var name = allData.user.name;
+var imageUrl = allData.urls.thumb;
+var description = allData.description;
+
+
     return ListTile(
-      title: Text(_dataResponse[index].description == null? "Empty description" : _dataResponse[index].description,maxLines: 2, ),
-      subtitle: Text("Author : "+ _dataResponse[index].user.name),
+     // _dataResponse[index].description == null? "Empty description" : _dataResponse[index].description,maxLines: 2,
+      title: Text(description == null ? "Empty desription" : description, maxLines: 2,),
+      subtitle: Text(name),
       leading: Material(
         child: InkWell(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => ImageScreen(
-              imgUrl: _dataResponse[index].urls.thumb,
-            author: _dataResponse[index].user.name,)));
+              imgUrl:imageUrl,
+            author: name,)));
           } ,
           child: CircleAvatar(
             radius: 30.0,
-            backgroundImage: NetworkImage(_dataResponse[index].urls.thumb),
+            backgroundImage: NetworkImage(imageUrl),
             backgroundColor: Colors.transparent,
           ),
         ),
