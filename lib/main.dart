@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_image_picker/ui/destinationController.dart';
 import 'package:flutter_test_image_picker/ui/listImage.dart';
 
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ListImages(),
+      home: DestinationController(),
     );
   }
 }

@@ -31,6 +31,14 @@ class DataResponse {
 
     );
   }
+  Map<String, dynamic> toMap() {
+    return {
+      'description': description,
+      'alt_description': alt_description,
+      'urls': urls,
+      'user': user,
+    };
+  }
 }
 
 class Urls {
@@ -50,6 +58,15 @@ class Urls {
         small: parsedJson['small'],
         thumb: parsedJson['thumb']);
   }
+  Map<String, dynamic> toMap() {
+    return {
+      'raw': raw,
+      'full': full,
+      'regular': regular,
+      'small': small,
+      'thumb': thumb,
+    };
+  }
 }
 
 class User {
@@ -59,5 +76,11 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> parsedJson) {
     return User(name: parsedJson['name']);
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'name': name,
+    };
   }
 }
