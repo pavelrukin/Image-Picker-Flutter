@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_image_picker/api/webService.dart';
-import 'package:flutter_test_image_picker/ui/imageScreen.dart';
-import 'package:flutter_test_image_picker/model/dataResponse.dart';
+import 'package:flutter_test_image_picker/api/WebService.dart';
+import 'package:flutter_test_image_picker/ui/ImageScreen.dart';
+import 'package:flutter_test_image_picker/model/DataResponse.dart';
 
 class ListImages extends StatefulWidget {
-  ListImages({Key key}) : super (key: key);
+  ListImages({Key key}) : super(key: key);
+
   @override
   createState() => ListImagesState();
-
 }
 
 class ListImagesState extends State<ListImages> {
@@ -16,10 +16,9 @@ class ListImagesState extends State<ListImages> {
   @override
   void initState() {
     super.initState();
-    if(_dataResponse == null){
+    if (_dataResponse == null) {
       _populateDataResponse();
     }
-
   }
 
   void _populateDataResponse() {
@@ -31,10 +30,9 @@ class ListImagesState extends State<ListImages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView.builder(
         //The getter 'length' was called on null. //Receiver: null//Tried calling: length
-        itemCount: _dataResponse.length == null ? 0: _dataResponse.length,
+        itemCount: _dataResponse.length == null ? 0 : _dataResponse.length,
         itemBuilder: _buildItemsForListView,
       ),
       // body:
@@ -53,6 +51,9 @@ class ListImagesState extends State<ListImages> {
         maxLines: 2,
       ),
       subtitle: Text(name),
+      trailing: Material(
+        //TODO add favorite item to ListFavovorite
+      ),
       leading: Material(
         child: InkWell(
           onTap: () {
@@ -74,4 +75,3 @@ class ListImagesState extends State<ListImages> {
     );
   }
 }
-

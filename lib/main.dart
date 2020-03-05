@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_image_picker/ui/destinationController.dart';
-import 'package:flutter_test_image_picker/ui/listImage.dart';
+import 'package:flutter_test_image_picker/ui/DestinationController.dart';
+import 'package:flutter_test_image_picker/ui/ListImage.dart';
 
 
 void main() => runApp(MyApp());

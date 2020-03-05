@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_test_image_picker/api/webService.dart';
-import 'package:flutter_test_image_picker/util/const.dart';
+import 'package:flutter_test_image_picker/api/WebService.dart';
+import 'package:flutter_test_image_picker/util/Constants.dart';
 
 
 class DataResponse {

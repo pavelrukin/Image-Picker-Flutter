@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'listFavorite.dart';
-import 'listImage.dart';
+import 'ListFavorite.dart';
+import 'ListImage.dart';
 
 class DestinationController extends StatefulWidget {
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_image_picker/model/dataResponse.dart';
+import 'package:flutter_test_image_picker/model/DataResponse.dart';
 
 class ImageScreen extends StatefulWidget {
 
