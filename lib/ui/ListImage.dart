@@ -13,8 +13,6 @@ class ListImages extends StatefulWidget {
 
 class ListImagesState extends State<ListImages> {
   List<DataResponse> _dataResponse;
-  bool _isFavorited = true;
-  int _favoriteCount = 41;
 
   @override
   void initState() {
@@ -30,17 +28,7 @@ class ListImagesState extends State<ListImages> {
         });
   }
 
-  void _toggleFavorite() {
-    setState(() {
-      if (_isFavorited) {
-        _favoriteCount -= 1;
-        _isFavorited = false;
-      } else {
-        _favoriteCount += 1;
-        _isFavorited = true;
-      }
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +63,6 @@ class ListImagesState extends State<ListImages> {
         maxLines: 2,
       ),
       subtitle: Text(name),
-      trailing: IconButton(
-        //TODO add favorite item to ListFavovorite
-        icon: (_isFavorited ? Icon(Icons.star) : Icon(Icons.star_border)),
-        color: Colors.red[500],
-        onPressed: _toggleFavorite,
-      ),
       leading: Material(
         child: InkWell(
           onTap: () {
