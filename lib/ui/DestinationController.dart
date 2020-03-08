@@ -12,7 +12,7 @@ class _DestinationControllerState extends State<DestinationController>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   TabController _tabController;
-  List<Widget> _tabList = [ListImages(), ListFavorite()];
+  List<Widget> _tabList = [ListImages(), ListFavorite()] ;
 
   void _tabControllerListener() {
     setState(() {
@@ -22,7 +22,7 @@ class _DestinationControllerState extends State<DestinationController>
 
   @override
   void initState() {
-    _tabController = TabController(vsync: this, length: _tabList.length);
+    _tabController = TabController(vsync: this, length: _tabList.length );
     _tabController.addListener(_tabControllerListener);
     super.initState();
 

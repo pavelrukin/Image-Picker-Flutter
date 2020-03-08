@@ -17,9 +17,8 @@ class ListImagesState extends State<ListImages> {
   @override
   void initState() {
     super.initState();
-    if (_dataResponse == null) {
-      _populateDataResponse();
-    }
+
+    _populateDataResponse();
   }
 
   void _populateDataResponse() {
@@ -28,17 +27,21 @@ class ListImagesState extends State<ListImages> {
         });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        //The getter 'length' was called on null. //Receiver: null//Tried calling: length
-        itemCount: _dataResponse.length == null ? 0 : _dataResponse.length,
+        body: _buildRequestListView());
+  }
+
+  Widget _buildRequestListView() {
+    if (this._dataResponse != null) {
+      return ListView.builder(
+        itemCount: _dataResponse.length,
         itemBuilder: _buildItemsForListView,
-      ),
-      // body:
+      );
+    }
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 
