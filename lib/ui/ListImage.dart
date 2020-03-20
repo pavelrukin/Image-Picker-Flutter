@@ -53,11 +53,12 @@ class ListImagesState extends State<ListImages> {
 
     return ListTile(
       onTap: () {
+        allData.iddd= index;
         Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => DetailItem(
-                    dataResponse: allData,
+                    dataResponse: allData, iddd: index,
                   )),
         );
       },
